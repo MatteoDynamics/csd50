@@ -3,26 +3,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct Node {
 	int data;
 	struct Node* next;
-};
+}Node;
 
 // Program to create a simple linked
 // list with 3 nodes
 int main()
 {
-	struct Node* head;
-	struct Node* second;
-	struct Node* third;
-	struct Node* fourth;
+	Node* head=NULL;
+	Node* second=NULL;
+	Node* third=NULL;
+	Node* fourth=NULL;
 
 
 	// allocate 3 nodes in the heap
-	head = (struct Node*)malloc(sizeof(struct Node));
-	second = (struct Node*)malloc(sizeof(struct Node));
-	third = (struct Node*)malloc(sizeof(struct Node));
-	fourth = (struct Node*)malloc(sizeof(struct Node));
+	head = (Node*)malloc(sizeof(Node));
+	second = (Node*)malloc(sizeof(Node));
+	third = (Node*)malloc(sizeof(Node));
+	fourth = (Node*)malloc(sizeof(Node));
 
 	/* Three blocks have been allocated dynamically.
 	We have pointers to these three blocks as head,
@@ -37,9 +37,13 @@ int main()
 # represents any random value.
 Data is random because we haven’t assigned
 anything yet */
-
+	if(head==NULL)
+	{
+		free(head);
+	return 1;
+	} 
 	head->data = 1; // assign data in first node
-	head->next = second; // Link first node withq
+	head->next = second;// Link first node withq
 	// the second node
 
 	/* data has been assigned to the data part of the first
@@ -95,7 +99,7 @@ anything yet */
 	Note that only head is sufficient to represent
 	the whole list. We can traverse the complete
 	list by following next pointers. */
-for (struct Node*tmp = head; tmp !=NULL; tmp = tmp->next)
+for (Node*tmp = head; tmp !=NULL; tmp = tmp->next)
 {
 	printf("$%i\n",tmp->data);
 }
